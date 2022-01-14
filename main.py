@@ -22,10 +22,7 @@ class MyClient(discord.Client):
             await channel.send(f"Hallo\n")
 
 project_dir = os.path.dirname(__file__)
-if len(project_dir) != 0:
-    project_dir += "/"
-
-with open(f"{project_dir}config/key.txt", "r") as file:
+with open(f"{project_dir}/config/key.txt", "r") as file:
     key = file.read().replace("\n", "")
 
 client = MyClient()
