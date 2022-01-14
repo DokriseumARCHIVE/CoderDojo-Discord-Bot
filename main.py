@@ -1,5 +1,3 @@
-import os
-
 import discord
 import os
 
@@ -14,7 +12,6 @@ class MyClient(discord.Client):
         print('Logged on as {0}!'.format(self.user))
 
     async def on_message(self, message):
-
         if message.author.id == 916645891862048788:
             return
         else:
@@ -24,7 +21,6 @@ class MyClient(discord.Client):
 
 
 project_dir = os.path.dirname(os.path.realpath(__file__))
-print(f'project dir: {project_dir}')
 with open(f"{project_dir}/config/key.txt", "r") as file:
     key = file.read().replace("\n", "")
 
