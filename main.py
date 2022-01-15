@@ -8,6 +8,7 @@ import os
 
 
 class MyClient(discord.Client):
+
     async def on_ready(self):
         print('Logged on as {0}!'.format(self.user))
 
@@ -15,9 +16,19 @@ class MyClient(discord.Client):
         if message.author.id == 916645891862048788:
             return
         else:
-            print('Message from {0.author}: Hi'.format(message))
+            minecraft_servers_all = ["hypixel.net", "gommeHD.net", "antiAC.net", "inTrouble.de"]
+            for i in range(len(minecraft_servers_all)):
+                minecraft_servers_all[i]="https://"+ minecraft_servers_all[i]
+
+            print('Message from {0.author}: {0.content}'.format(message))
             channel = client.get_channel(916648708655951887) # .channel.id)
-            await channel.send(f"Hallo\n")
+            if message.content  == "!server" :
+                await channel.send("\n".join(minecraft_servers_all))
+            if message.content.startswith("!create"):
+                channel_name = message.content.split()[1]
+                channel = await message.guild.create_text_channel(channel_name)
+            else:
+                await channel.send(f"Hallo\n")
 
 
 project_dir = os.path.dirname(os.path.realpath(__file__))
